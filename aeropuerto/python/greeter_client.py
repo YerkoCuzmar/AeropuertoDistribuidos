@@ -25,7 +25,15 @@ def run():
     # NOTE(gRPC Python Team): .close() is possible on a channel and should be
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
-    with grpc.insecure_channel('localhost:50051') as channel:
+    print "Bienvenido al Vuelo"
+    aerolinea = raw_input("[Avion] Nombre de la Aerolinea:\n")
+    numeroAvion = raw_input("[Avion] Numero de Avion:\n")
+    maxCarga = int(raw_input("[Avion - ", numeroAvion, "] Peso maximo de carga [Kg]:\n"))
+    maxCombustible = int(raw_input("[Avion - ", numeroAvion, "] Capacidad maxima de combustible [L]:\n"))
+    ipTorreControl = raw_input("[Avion - ", numeroAvion, "] Torre de Control inicial:\n")
+    puerto = 50051
+    canal = ipTorreControl + ':' + puerto
+    with grpc.insecure_channel(canal) as channel:
         stub = torre_control_pb2_grpc.ControlStub(channel)                      #sale desde el import linea 21
         response = stub.SayHello(torre_control_pb2.HelloRequest(name='you'))    #import linea 20
     print("Greeter client received: " + response.message)

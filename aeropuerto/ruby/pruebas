@@ -1,0 +1,2 @@
+ipTorreControl = raw_input("[Avion] Torre de Control inicial:\n")
+print ipTorreControl + ':50051\n'
