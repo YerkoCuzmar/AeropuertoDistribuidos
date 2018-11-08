@@ -19,10 +19,72 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='torreDeControl',
   syntax='proto3',
   serialized_options=_b('\n\027io.grpc.distrib.controlB\014ControlProtoP\001\242\002\002TC'),
-  serialized_pb=_b('\n\x13torre_control.proto\x12\x0etorreDeControl\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t2Q\n\x07\x43ontrol\x12\x46\n\x08SayHello\x12\x1c.torreDeControl.HelloRequest\x1a\x1a.torreDeControl.HelloReply\"\x00\x42.\n\x17io.grpc.distrib.controlB\x0c\x43ontrolProtoP\x01\xa2\x02\x02TCb\x06proto3')
+  serialized_pb=_b('\n\x13torre_control.proto\x12\x0etorreDeControl\"\"\n\x11\x41terrizajeRequest\x12\r\n\x05\x61vion\x18\x01 \x01(\t\" \n\x0f\x41terrizajeReply\x12\r\n\x05pista\x18\x01 \x01(\x05\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t2\xa5\x01\n\x07\x43ontrol\x12\x46\n\x08SayHello\x12\x1c.torreDeControl.HelloRequest\x1a\x1a.torreDeControl.HelloReply\"\x00\x12R\n\nNuevoAvion\x12!.torreDeControl.AterrizajeRequest\x1a\x1f.torreDeControl.AterrizajeReply\"\x00\x42.\n\x17io.grpc.distrib.controlB\x0c\x43ontrolProtoP\x01\xa2\x02\x02TCb\x06proto3')
 )
 
 
+
+
+_ATERRIZAJEREQUEST = _descriptor.Descriptor(
+  name='AterrizajeRequest',
+  full_name='torreDeControl.AterrizajeRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='avion', full_name='torreDeControl.AterrizajeRequest.avion', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=39,
+  serialized_end=73,
+)
+
+
+_ATERRIZAJEREPLY = _descriptor.Descriptor(
+  name='AterrizajeReply',
+  full_name='torreDeControl.AterrizajeReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='pista', full_name='torreDeControl.AterrizajeReply.pista', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=75,
+  serialized_end=107,
+)
 
 
 _HELLOREQUEST = _descriptor.Descriptor(
@@ -51,8 +113,8 @@ _HELLOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=39,
-  serialized_end=67,
+  serialized_start=109,
+  serialized_end=137,
 )
 
 
@@ -82,13 +144,29 @@ _HELLOREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=69,
-  serialized_end=98,
+  serialized_start=139,
+  serialized_end=168,
 )
 
+DESCRIPTOR.message_types_by_name['AterrizajeRequest'] = _ATERRIZAJEREQUEST
+DESCRIPTOR.message_types_by_name['AterrizajeReply'] = _ATERRIZAJEREPLY
 DESCRIPTOR.message_types_by_name['HelloRequest'] = _HELLOREQUEST
 DESCRIPTOR.message_types_by_name['HelloReply'] = _HELLOREPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+AterrizajeRequest = _reflection.GeneratedProtocolMessageType('AterrizajeRequest', (_message.Message,), dict(
+  DESCRIPTOR = _ATERRIZAJEREQUEST,
+  __module__ = 'torre_control_pb2'
+  # @@protoc_insertion_point(class_scope:torreDeControl.AterrizajeRequest)
+  ))
+_sym_db.RegisterMessage(AterrizajeRequest)
+
+AterrizajeReply = _reflection.GeneratedProtocolMessageType('AterrizajeReply', (_message.Message,), dict(
+  DESCRIPTOR = _ATERRIZAJEREPLY,
+  __module__ = 'torre_control_pb2'
+  # @@protoc_insertion_point(class_scope:torreDeControl.AterrizajeReply)
+  ))
+_sym_db.RegisterMessage(AterrizajeReply)
 
 HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), dict(
   DESCRIPTOR = _HELLOREQUEST,
@@ -113,8 +191,8 @@ _CONTROL = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=100,
-  serialized_end=181,
+  serialized_start=171,
+  serialized_end=336,
   methods=[
   _descriptor.MethodDescriptor(
     name='SayHello',
@@ -123,6 +201,15 @@ _CONTROL = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_HELLOREQUEST,
     output_type=_HELLOREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='NuevoAvion',
+    full_name='torreDeControl.Control.NuevoAvion',
+    index=1,
+    containing_service=None,
+    input_type=_ATERRIZAJEREQUEST,
+    output_type=_ATERRIZAJEREPLY,
     serialized_options=None,
   ),
 ])

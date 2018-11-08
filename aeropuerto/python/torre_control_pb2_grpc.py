@@ -19,6 +19,11 @@ class ControlStub(object):
         request_serializer=torre__control__pb2.HelloRequest.SerializeToString,
         response_deserializer=torre__control__pb2.HelloReply.FromString,
         )
+    self.NuevoAvion = channel.unary_unary(
+        '/torreDeControl.Control/NuevoAvion',
+        request_serializer=torre__control__pb2.AterrizajeRequest.SerializeToString,
+        response_deserializer=torre__control__pb2.AterrizajeReply.FromString,
+        )
 
 
 class ControlServicer(object):
@@ -32,6 +37,13 @@ class ControlServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def NuevoAvion(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_ControlServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -39,6 +51,11 @@ def add_ControlServicer_to_server(servicer, server):
           servicer.SayHello,
           request_deserializer=torre__control__pb2.HelloRequest.FromString,
           response_serializer=torre__control__pb2.HelloReply.SerializeToString,
+      ),
+      'NuevoAvion': grpc.unary_unary_rpc_method_handler(
+          servicer.NuevoAvion,
+          request_deserializer=torre__control__pb2.AterrizajeRequest.FromString,
+          response_serializer=torre__control__pb2.AterrizajeReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -11,9 +11,47 @@ package torreDeControl;
 service Control {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc NuevoAvion (AterrizajeRequest) returns (AterrizajeReply) {}
+  rpc ConsultarDestino (DestinoRequest) returns (DestinoReply) {}
+  rpc InstruccionesDespegue (DespegueRequest) returns (DespegueReply) {}
+  rpc DespegueExitoso (ExitoRequest) returns (ExitoReply) {}
 }
 
 // The request message containing the user's name.
+message AterrizajeRequest {
+  string avion = 1;
+}
+
+message AterrizajeReply {
+  int32 pista = 1;
+}
+
+message AterrizajeRequest{
+  string destino = 1;
+}
+
+message AterrizajeReply{
+  string ip = 1;
+}
+
+message DespegueRequest{
+  string avion = 1;
+}
+
+message DespegueReply{
+  int32 pista = 1;
+  int32 altura = 2;
+  string predecesor = 3;
+}
+
+message ExitoRequest{
+  int32 exito = 1;
+}
+
+message ExitoReply{
+  int32 recibido = 1;
+}
+
 message HelloRequest {
   string name = 1;
 }

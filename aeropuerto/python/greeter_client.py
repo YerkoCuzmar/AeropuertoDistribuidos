@@ -1,42 +1,64 @@
-# Copyright 2015 gRPC authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-"""The Python implementation of the GRPC helloworld.Greeter client."""
-
-from __future__ import print_function
 
 import grpc
+import time
 
 import torre_control_pb2        # {nombre_del_proto}_pb2
 import torre_control_pb2_grpc   # {nombre_del_proto}_pb2_grpc
 
 
 def run():
-    # NOTE(gRPC Python Team): .close() is possible on a channel and should be
-    # used in circumstances in which the with statement does not fit the needs
-    # of the code.
+    vuelo = {}
     print "Bienvenido al Vuelo"
-    aerolinea = raw_input("[Avion] Nombre de la Aerolinea:\n")
-    numeroAvion = raw_input("[Avion] Numero de Avion:\n")
-    maxCarga = int(raw_input("[Avion - ", numeroAvion, "] Peso maximo de carga [Kg]:\n"))
-    maxCombustible = int(raw_input("[Avion - ", numeroAvion, "] Capacidad maxima de combustible [L]:\n"))
-    ipTorreControl = raw_input("[Avion - ", numeroAvion, "] Torre de Control inicial:\n")
+    vuelo = raw_input("[Avion] Nombre de la Aerolinea y Numero de avion:\n")
+    numeroVuelo = vuelo.split(" ")[1]
+    print "[Avion - " + numeroVuelo + "] Peso maximo de carga [Kg]:"
+    maxCarga = int(raw_input())
+    print "[Avion - " + numeroVuelo + "] Capacidad maxima de combustible [L]:"
+    maxCombustible = int(raw_input())
+    print "[Avion - " + numeroVuelo + "] Torre de Control inicial:"
+    ipTorreControl = raw_input()
     puerto = 50051
-    canal = ipTorreControl + ':' + puerto
+    canal = ipTorreControl + ':' + str(puerto)
     with grpc.insecure_channel(canal) as channel:
-        stub = torre_control_pb2_grpc.ControlStub(channel)                      #sale desde el import linea 21
-        response = stub.SayHello(torre_control_pb2.HelloRequest(name='you'))    #import linea 20
-    print("Greeter client received: " + response.message)
+        stub = torre_control_pb2_grpc.ControlStub(channel)                              #sale desde el import linea 21
+        response = stub.NuevoAvion(torre_control_pb2.AterrizajeRequest(avion=vuelo))    #import linea 20
+    print "Aterrizando en la pista " + response.pista "..."
+    time.sleep(2)
+    print "Aterrizaje exitoso ..."
+    time.sleep(2)
+    while (True)
+        if v = raw_input(int("Realizar vuelo? (y/n): ")) == "y":
+            despegue = False
+            destino = raw_input("Ingrese Destino:")
+            with grpc.insecure_channel(canal) as channel:
+                stub = torre_control_pb2_grpc.ControlStub(channel)                              #sale desde el import linea 21
+                response = stub.ConusltarDestino(torre_control_pb2.AterrizajeRequest(destino=destino))    #import linea 20
+            if response.ip =! "":
+                print "Pasando por el Gate..."
+                time.sleep(2)
+                print "Todos los pasajeros a bordo y combustible cargado"
+                print "Pidiendo instrucciones para despegar"
+                while(!despegue)
+                with grpc.insecure_channel(canal) as channel:
+                    stub = torre_control_pb2_grpc.ControlStub(channel)                              #sale desde el import linea 21
+                    response = stub.InstruccionesDespegue(torre_control_pb2.AterrizajeRequest(avion=destino))    #import linea 20
+                if response.predecesor == "":
+                    print "Pista " + response.pista + "asignada y altura de " + response.altura "km."
+                    time.sleep(1)
+                    print "Despegando..."
+                    time.sleep(1)
+                    print "Despegue exitoso!"
+                    despegue = True
+                    with grpc.insecure_channel(canal) as channel:
+                        stub = torre_control_pb2_grpc.ControlStub(channel)                              #sale desde el import linea 21
+                        response = stub.DespegueExitoso(torre_control_pb2.ExitoRequest(exito=1))    #import linea 20
+                else:
+                    print "Todas las pistas ocupadas, el avion predecesor es " + response.predecesor.split(" ")[0]
+
+
+
+        else if v == "n"
+            break
 
 
 if __name__ == '__main__':

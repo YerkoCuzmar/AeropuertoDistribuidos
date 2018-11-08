@@ -17,6 +17,7 @@ module TorreDeControl
 
       # Sends a greeting
       rpc :SayHello, HelloRequest, HelloReply
+      rpc :NuevoAvion, AterrizajeRequest, AterrizajeReply
     end
 
     Stub = Service.rpc_stub_class
